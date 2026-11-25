@@ -18,7 +18,9 @@ with open(taxid_list_file, "rt") as f:
 tree = ncbi.get_topology(taxid_list, intermediate_nodes=False)
 print(tree.to_str(props=["sci_name"]))
 
+
 for node in tree.traverse():
     node.name = node.get_prop("sci_name")
 
-tree.write("tree.nwk")
+# parser 8 adds the internal node labels
+tree.write("tree.nwk", parser=8)
